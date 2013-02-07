@@ -1,4 +1,5 @@
 def form():
+    import gluon.contrib.simplejson as sj
 
     form = FORM(TABLE(
         TR('Name:', INPUT(_type='text', _name='name', requires=IS_NOT_EMPTY())),
@@ -17,4 +18,4 @@ def form():
         response.flash = 'Please fill out the highlighted fields'
     else:
         response.flash = 'Please enter your poll information'
-    return dict(form=form, vars=form.vars)
+    return dict(form=form, vars=sj.dumps(form.vars))
